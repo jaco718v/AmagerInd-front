@@ -1,7 +1,7 @@
 <template>
 <div>
     <p id="error-text" style="color:red"></p>
-      <h3>Reservations for showing</h3>
+      <h3>Begivenheder</h3>
       <table class="table" style="max-width:1000px;">
         <thead>
           <tr>
@@ -16,6 +16,7 @@
         </tbody>
       </table>
     </div>
+    <div id="event-paginator" class="pagination justify-content-center" style="margin-top:10px;"></div>
     
     <div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -30,11 +31,19 @@
                 <div style="margin-left:10%;margin-right: 10%;">
                     <div style="max-width:900px;">
                            <div class="row">
+                            <div class="col-md-2">
+                              <label for="event-id"><b>Id</b></label>
+                            </div>
+                            <div class="col-md-8">
+                              <input type="number" placeholder="Id" id="event-id" style="border:solid; border-width: 1px; border-color:darkgrey;" required>
+                            </div>
+                            <div class="row"> 
                          <div class="col-md-2">
                            <label for="event-title"><b>Titel</b></label>
                          </div>
                          <div class="col-md-8">
                            <input type="text" placeholder="Begivenhed titel" id="event-title" style="border:solid; border-width: 1px; border-color:darkgrey;" required>
+                         </div>
                          </div>
                        <div class="row">
                          <div class="col-md-2">
@@ -54,11 +63,11 @@
                        </div>
                        <div class="row" style="margin-top:2em">
                          <div class="col-md-3 d-flex align-items-center">
-                           <button id="btn-create-event" style="width:100%" class="btn btn-dark">Bekræft</button>
+                           <button id="btn-create-event" style="width:120%" class="btn btn-dark">Bekræft</button>
                          </div>
                        </div>
                      </div>
-                  <p id="error-text" style="color:red"></p>
+                  <p id="message-modal" style="color:red"></p>
                  </div>
                  </div>
           </div>

@@ -7,10 +7,12 @@ import {
 } from "./utils.js"
 
 import { initLogin,logout } from "./pages/login/login.js"
+import { initAllVinyls} from "./pages/vinyl/showVinyls.js";
 
 window.addEventListener("load", async () => {
 
   const templateLogin = await loadTemplate("./pages/login/login.html")
+  const templateVinyls = await loadTemplate("./pages/vinyl/showVinyls.html")
 
   adjustForMissingHash()
 
@@ -40,7 +42,11 @@ window.addEventListener("load", async () => {
       },
       "/logout": () => {
         logout()
-      }
+      },
+        "/vinyl": () => {
+          renderTemplate(templateVinyls, "content")
+            initAllVinyls()
+        }
     })
     .notFound(() => {
     })

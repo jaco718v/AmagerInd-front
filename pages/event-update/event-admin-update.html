@@ -1,14 +1,20 @@
 <template>
+  <style>
+    .hover-cell:hover {
+      background-color:darkgray;
+      cursor: pointer;
+    }
+    </style>
 <div>
     <p id="error-text" style="color:red"></p>
       <h3>Begivenheder</h3>
       <table class="table" style="max-width:1000px;">
         <thead>
-          <tr>
-            <th>Id</th>
-            <th>Titel</th>
-            <th>Beskrivelse</th>
-            <th>Dato</th>
+          <tr class="bg-secondary" id="theader">
+            <th class="hover-cell" id="sort-id">Id</th>
+            <th class="hover-cell" id="sort-title">Titel</th>
+            <th class="hover-cell" id="sort-dateTime">Dato</th>
+            <th class="hover-cell" id="sort-created">Oprettelsesdato</th>
             <th>Editer</th>
           </tr>
         </thead>
@@ -19,7 +25,7 @@
     <div id="event-paginator" class="pagination justify-content-center" style="margin-top:10px;"></div>
     
     <div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="eventModalLabel">Editer begivenhed</h5>
@@ -35,7 +41,7 @@
                               <label for="event-id"><b>Id</b></label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" placeholder="Id" id="event-id" style="border:solid; border-width: 1px; border-color:darkgrey;" required>
+                              <input type="number" placeholder="Id" id="event-id" style="border:solid; border-width: 1px; border-color:darkgrey;" disabled>
                             </div>
                             <div class="row"> 
                          <div class="col-md-2">
@@ -47,15 +53,16 @@
                          </div>
                        <div class="row">
                          <div class="col-md-2">
-                           <label for="event-description"><b>Beskrivelse</b></label>
+                           <label for="event-description"><b>Indhold</b></label>
                          </div>
                          <div class="col-md-8">
-                           <input type="text" placeholder="Skriv beskrivelse" id="event-description" required>
+                          <br>
+                           <textarea id="event-description" cols="60" rows="7"></textarea>
                          </div>
                        </div>
                        <div class="row">
                          <div class="col-md-2">
-                             <label for="event-date"><b>Dato og tid</b></label>
+                             <label for="event-date"><b>Tid</b></label>
                            </div>
                            <div class="col-md-8">
                              <input type="datetime-local" placeholder="Vælg dato" id="event-date" required>

@@ -2,6 +2,8 @@ import { handleHttpErrors,sanitizeStringWithTableRows } from "../../utils.js"
 import { API_URL} from "../../settings.js"
 import { paginator } from "../../lib/paginator/paginate-bootstrap.js"
 const SIZE = 5
+let sortOrder = "desc"
+let sortField = "id"
 const navigoRoute = "event/update"
 
 
@@ -9,18 +11,29 @@ let URL = API_URL + "/events/"
 
 export async function initUpdateEvent(pg, match){
     getEvents(pg, match)
+    document.getElementById("theader").onclick = evt => handleSort(pg, match, evt)
     document.getElementById("tbody").onclick = evt => choiceButton(evt)
     document.getElementById("btn-create-event").onclick = evt => updateEvent()
 
 }
 
+async function handleSort(pageNo, match, evt) {
+    const targetId = evt.target.id
+    const idSplit = targetId.split("-")
+    console.log(idSplit[1])
+    if(idSplit[0] === "sort"){
+        sortOrder = sortOrder == "asc" ? "desc" : "asc"
+        sortField = idSplit[1]
+        await getEvents(pageNo, match)
+    }
+  }
 
 async function getEvents(pg, match){
     const TOTAL = await getEventsTotal()
 
     const p = match?.params?.page || pg 
     let pageNo = Number(p)
-    let queryString =  `?size=${SIZE}&page=` + (pageNo-1)
+    let queryString =  `?sort=${sortField},${sortOrder}&size=${SIZE}&page=` + (pageNo-1)
     let navigoRef = `?page=` + (pageNo)
     
     try{
@@ -67,8 +80,8 @@ function makeTableRow(storeEvents){
     `<tr>
     <td>${storeEvents.id}</td>
     <td>${storeEvents.title}</td>
-    <td>${storeEvents.description}</td>
     <td>${storeEvents.dateTime}</td>
+    <td>${storeEvents.created}</td>
     <td>
     <button id="btn-openmodal-${storeEvents.id}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event-modal">Editer</button>
     <button id="btn-remove-${storeEvents.id}" type="button" class="btn btn-warning">Slet</button>
@@ -96,6 +109,7 @@ async function updateEvent(){
     const title = document.getElementById("event-title").value
     const description = document.getElementById("event-description").value
     const dato = document.getElementById("event-date").value.replace("T", " ")
+    console.log(description)
     try{
     const response = await fetch(URL + id,{
         method:'PUT',

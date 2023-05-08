@@ -7,6 +7,8 @@ export async function initAllVinyls(){
     await getAllVinyls()
     document.getElementById("tbody").onclick = evt => goToEvent(evt)
     document.getElementById("btn-edit-vinyl").onclick = editVinyl
+    document.getElementById("btn-add-vinyl").onclick = displayAddVinyl
+    document.getElementById("btn-add-new-vinyl").onclick = addVinyl
 }
 
 async function getAllVinyls() {
@@ -18,7 +20,6 @@ async function getAllVinyls() {
 function makeTable(vinyls) {
     const tableRows = vinyls.map(vinyl =>
         `<tr>
-        <td>${vinyl.id}</td>
         <td>${vinyl.image}</td>
         <td>${vinyl.artist}</td>
         <td>${vinyl.title}</td>
@@ -79,6 +80,7 @@ async function updateVinyl(vinylID) {
 
 function setPlaceholders(vinyl) {
     document.getElementById("ID").value = vinyl.id
+    document.getElementById("ID").style.display = "none"
     document.getElementById("artist").placeholder = vinyl.artist
     document.getElementById("title").placeholder = vinyl.title
     document.getElementById("image").placeholder = vinyl.image
@@ -106,10 +108,41 @@ async function editVinyl() {
 
     try {
         await fetch(URL + id, options)
+        document.getElementById("update-vinyl").style.display = "none"
     } catch (err) {
         console.log(err)
     }
+}
 
+function displayAddVinyl() {
+    document.getElementById("add-vinyl").style.display = "block"
+    document.getElementById("btn-add-vinyl").style.display = "none"
+}
+
+async function addVinyl() {
+    const artist = document.getElementById("add-artist").value
+    const title = document.getElementById("add-title").value
+    const image = document.getElementById("add-image").value
+    const year = document.getElementById("add-year").value
+    const country = document.getElementById("add-country").value
+    const genre = document.getElementById("add-genre").value
+    const label = document.getElementById("add-label").value
+    const price = document.getElementById("add-price").value
+
+    const data = {"artist":artist, "title":title, "image":image,  "year":year, "country":country, "genre":genre, "label":label, "price":price};
+
+    const options = {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}
+
+    try {
+        await fetch(URL, options)
+            .then(response => response.json())
+            .then(data => setPlaceholders(data))
+        document.getElementById("succes").innerText = "New vinyl added to list"
+        document.getElementById("add-vinyl").style.display = "none"
+        document.getElementById("btn-add-vinyl").style.display = "block"
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 

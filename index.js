@@ -7,12 +7,19 @@ import {
 } from "./utils.js"
 
 import { initLogin,logout } from "./pages/login/login.js"
+
+import { initAllVinyls} from "./pages/vinyl/showVinyls.js";
+
 import { initCreateEvent } from "./pages/event-create/event-admin-create.js";
 import { initUpdateEvent } from "./pages/event-update/event-admin-update.js";
+
 
 window.addEventListener("load", async () => {
 
   const templateLogin = await loadTemplate("./pages/login/login.html")
+
+  const templateVinyls = await loadTemplate("./pages/vinyl/showVinyls.html")
+
   const templateCreateEvent = await loadTemplate("./pages/event-create/event-admin-create.html")
   const templateUpdateEvent = await loadTemplate("./pages/event-update/event-admin-update.html")
 
@@ -45,6 +52,12 @@ window.addEventListener("load", async () => {
       "/logout": () => {
         logout()
       },
+
+        "/vinyl": () => {
+          renderTemplate(templateVinyls, "content")
+            initAllVinyls()
+        }
+
       "/event/create": () => {
         renderTemplate(templateCreateEvent, "content")
         initCreateEvent()
@@ -53,6 +66,7 @@ window.addEventListener("load", async () => {
         renderTemplate(templateUpdateEvent, "content")
         initUpdateEvent(1, match)
       }
+
 
     })
     .notFound(() => {

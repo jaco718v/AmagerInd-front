@@ -7,12 +7,21 @@ import {
 } from "./utils.js"
 
 import { initLogin,logout } from "./pages/login/login.js"
+
 import { initAllVinyls} from "./pages/vinyl/showVinyls.js";
+
+import { initCreateEvent } from "./pages/event-create/event-admin-create.js";
+import { initUpdateEvent } from "./pages/event-update/event-admin-update.js";
+
 
 window.addEventListener("load", async () => {
 
   const templateLogin = await loadTemplate("./pages/login/login.html")
+
   const templateVinyls = await loadTemplate("./pages/vinyl/showVinyls.html")
+
+  const templateCreateEvent = await loadTemplate("./pages/event-create/event-admin-create.html")
+  const templateUpdateEvent = await loadTemplate("./pages/event-update/event-admin-update.html")
 
   adjustForMissingHash()
 
@@ -33,7 +42,7 @@ window.addEventListener("load", async () => {
         <h2>Home</h2>
         <img style="width:50%;max-width:600px;margin-top:1em;" src="./images/cars.png">
         <p style='margin-top:1em;font-size: 1.5em;color:darkgray;'>
-          Car's 'R' Us - Created, as a help to make GREAT fullstack developers <span style='font-size:2em;'>&#128516;</span>
+          Temp message <span style='font-size:2em;'>&#128516;</span>
         </p>
      `,
       "/login": () => {
@@ -43,10 +52,22 @@ window.addEventListener("load", async () => {
       "/logout": () => {
         logout()
       },
+
         "/vinyl": () => {
           renderTemplate(templateVinyls, "content")
             initAllVinyls()
         }
+
+      "/event/create": () => {
+        renderTemplate(templateCreateEvent, "content")
+        initCreateEvent()
+      },
+      "/event/update": (match) => {
+        renderTemplate(templateUpdateEvent, "content")
+        initUpdateEvent(1, match)
+      }
+
+
     })
     .notFound(() => {
     })

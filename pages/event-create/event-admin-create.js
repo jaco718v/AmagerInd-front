@@ -34,7 +34,7 @@ async function createEvent(){
                 //'Authorization': 'Bearer ' + token},})
             .then(handleHttpErrors)
         
-        window.router.navigate("/")
+        window.router.navigate("/event/update")
     }catch(err){
         document.getElementById("error-text").innerText = err.message
     }

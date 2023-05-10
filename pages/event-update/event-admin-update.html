@@ -4,6 +4,10 @@
       background-color:darkgray;
       cursor: pointer;
     }
+    #child-img {
+      max-width: 300px;
+      max-height: 300px;
+    }
     </style>
 <div>
     <p id="error-text" style="color:red"></p>
@@ -35,10 +39,7 @@
             </div>
             <div id="begivenhed-content" class="modal-content">
                 <div style="margin-left:10%;margin-right: 10%;">
-                    <div style="max-width:900px;">
-                      <div class="row">
-                        <div id="image-test"></div>
-                      </div>     
+                    <div style="max-width:900px;">     
                       <div class="row">
                             <div class="col-md-2">
                               <label for="event-id"><b>Id</b></label>
@@ -63,6 +64,20 @@
                            <textarea id="event-description" cols="60" rows="7"></textarea>
                          </div>
                        </div>
+                       <div class="row">
+                        <div class="col-md-2">
+                          <label for="event-image"><b>Billede</b></label>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="file" id="event-image">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div id="event-display-image" class="col-md-8">
+                        </div>
+                      </div>
                        <div class="row">
                          <div class="col-md-2">
                              <label for="event-date"><b>Tid</b></label>

@@ -99,6 +99,8 @@ async function modalSetup(id){
         document.getElementById("event-title").value = response.title
         document.getElementById("event-description").value = response.description
         document.getElementById("event-date").value = response.dateTime
+        document.getElementById("event-image").value = null
+        
        
         try{
             let child = document.getElementById("child-img")
@@ -150,9 +152,6 @@ async function updateEvent(pg, match){
         .then(handleHttpErrors)
     
         getEvents(pg, match)
-
-        //document.getElementById("message-modal").style.color = "green"
-        //document.getElementById("message-modal")
         
         var modalId = document.getElementById("event-modal")
         var modal = bootstrap.Modal.getInstance(modalId)

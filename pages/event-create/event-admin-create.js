@@ -18,13 +18,11 @@ async function createEvent(){
     const title = document.getElementById("event-title").value
     const description = document.getElementById("event-description").value
     const dateTime = document.getElementById("event-date").value.replace("T", " ")
-
-
+    
     formData.append('title', JSON.stringify(title))
     formData.append('description', JSON.stringify(description))
     formData.append('dateTime', (JSON.stringify(dateTime)))
-
-
+    
     try{
         const token = localStorage.getItem("token")
         const response = await fetch(URL,{

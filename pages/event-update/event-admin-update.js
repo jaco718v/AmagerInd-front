@@ -98,6 +98,20 @@ async function modalSetup(id){
         document.getElementById("event-title").value = response.title
         document.getElementById("event-description").value = response.description
         document.getElementById("event-date").value = response.dateTime
+       
+        try{
+            let child = document.getElementById("child-img")
+            document.getElementById("image-test").removeChild(child)
+        }catch(err){}
+    
+        let img = document.createElement("img")
+        img.setAttribute("id","child-img")
+
+        let imageBase64 = response.encodedImage
+        img.src = "data:image/jpeg;base64,"+imageBase64
+        
+        document.getElementById("image-test").append(img)
+
     }catch(err){
         document.getElementById("error-text").innerText = err.message
     }

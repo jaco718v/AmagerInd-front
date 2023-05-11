@@ -52,12 +52,10 @@ window.addEventListener("load", async () => {
       "/logout": () => {
         logout()
       },
-
-        "/vinyl": () => {
-          renderTemplate(templateVinyls, "content")
-            initAllVinyls()
-        }
-
+      "/vinyl": () => {
+        renderTemplate(templateVinyls, "content")
+        initAllVinyls()
+        },
       "/event/create": () => {
         renderTemplate(templateCreateEvent, "content")
         initCreateEvent()

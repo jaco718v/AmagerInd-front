@@ -7,10 +7,12 @@ import {
 } from "./utils.js"
 
 import { initLogin,logout } from "./pages/login/login.js"
+import { initNews } from "./pages/news/news.js"
 
 window.addEventListener("load", async () => {
 
   const templateLogin = await loadTemplate("./pages/login/login.html")
+  const templateNews = await loadTemplate("./pages/news/news.html")
 
   adjustForMissingHash()
 
@@ -40,7 +42,12 @@ window.addEventListener("load", async () => {
       },
       "/logout": () => {
         logout()
+      },
+      "/news": () => {
+        renderTemplate(templateNews, "content")
+        initNews()
       }
+
     })
     .notFound(() => {
     })

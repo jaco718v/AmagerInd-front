@@ -26,7 +26,10 @@ async function createEvent(){
     try{
         const token = localStorage.getItem("token")
         const response = await fetch(URL,{
-            method:'POST', 
+            method:'POST',
+            headers: { 
+                //'Authorization': 'Bearer ' + token
+                }, 
             body: formData
         })
                 //'Authorization': 'Bearer ' + token},})

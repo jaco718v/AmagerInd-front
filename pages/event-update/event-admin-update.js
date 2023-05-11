@@ -146,8 +146,9 @@ async function updateEvent(pg, match){
     const response = await fetch(URL + id,{
         method:'PUT',
         headers: { 
+            //'Authorization': 'Bearer ' + token
             },
-           // 'Authorization': 'Bearer ' + token},
+            
         body:formData})
         .then(handleHttpErrors)
     

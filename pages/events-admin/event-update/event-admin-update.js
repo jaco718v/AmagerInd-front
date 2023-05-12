@@ -1,6 +1,6 @@
-import { handleHttpErrors,sanitizeStringWithTableRows } from "../../utils.js"
-import { API_URL} from "../../settings.js"
-import { paginator } from "../../lib/paginator/paginate-bootstrap.js"
+import { handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
+import { API_URL} from "../../../settings.js"
+import { paginator } from "../../../lib/paginator/paginate-bootstrap.js"
 const SIZE = 5
 let sortOrder = "desc"
 let sortField = "id"
@@ -45,9 +45,10 @@ async function getEvents(pg, match){
 
     document.getElementById("tbody").innerHTML = sanitizeStringWithTableRows(tableRows)
 
+    
 
     }catch(err){
-        document.getElementById("error-text").innerText = err.message
+        document.getElementById("message-modal").innerText = err.message
     }
 
     paginator({

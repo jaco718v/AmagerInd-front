@@ -1,5 +1,5 @@
-import { handleHttpErrors,sanitizeStringWithTableRows } from "../../utils.js"
-import { API_URL} from "../../settings.js"
+import { handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
+import { API_URL} from "../../../settings.js"
 
 let URL = API_URL + "/events/"
 
@@ -32,7 +32,6 @@ async function createEvent(){
                 }, 
             body: formData
         })
-                //'Authorization': 'Bearer ' + token},})
             .then(handleHttpErrors)
         
         window.router.navigate("/event/update")

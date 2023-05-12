@@ -7,12 +7,27 @@ import {
 } from "./utils.js"
 
 import { initLogin,logout } from "./pages/login/login.js"
-import { initNews } from "./pages/news/news.js"
+
+import { initUpdateNews } from "./pages/news-admin/news-update/news-admin-update.js"
+import { initCreateNews } from "./pages/news-admin/news-create/news-admin-create.js"
+
+import { initAllVinyls} from "./pages/vinyl/showVinyls.js";
+
+import { initCreateEvent } from "./pages/events-admin/event-create/event-admin-create.js";
+import { initUpdateEvent } from "./pages/events-admin/event-update/event-admin-update.js";
+
 
 window.addEventListener("load", async () => {
 
   const templateLogin = await loadTemplate("./pages/login/login.html")
-  const templateNews = await loadTemplate("./pages/news/news.html")
+
+  const templateUpdateNews = await loadTemplate("./pages/news-admin/news-update/news-admin-update.html")
+  const templateCreateNews = await loadTemplate("./pages/news-admin/news-create/news-admin-create.html")
+
+  const templateVinyls = await loadTemplate("./pages/vinyl/showVinyls.html")
+
+  const templateCreateEvent = await loadTemplate("./pages/events-admin/event-create/event-admin-create.html")
+  const templateUpdateEvent = await loadTemplate("./pages/events-admin/event-update/event-admin-update.html")
 
   adjustForMissingHash()
 
@@ -31,9 +46,8 @@ window.addEventListener("load", async () => {
       //For very simple "templates", you can just insert your HTML directly like below
       "/": () => document.getElementById("content").innerHTML = `
         <h2>Home</h2>
-        <img style="width:50%;max-width:600px;margin-top:1em;" src="./images/cars.png">
         <p style='margin-top:1em;font-size: 1.5em;color:darkgray;'>
-          Car's 'R' Us - Created, as a help to make GREAT fullstack developers <span style='font-size:2em;'>&#128516;</span>
+          Temp message <span style='font-size:2em;'>&#128516;</span>
         </p>
      `,
       "/login": () => {
@@ -43,11 +57,26 @@ window.addEventListener("load", async () => {
       "/logout": () => {
         logout()
       },
-      "/news": () => {
-        renderTemplate(templateNews, "content")
-        initNews()
-      }
-
+      "/news/create": () => {
+        renderTemplate(templateCreateNews, "content")
+        initCreateNews()
+      },
+      "/news/update": (match) => {
+        renderTemplate(templateUpdateNews, "content")
+        initUpdateNews(1, match)
+      },
+      "/vinyl": () => {
+        renderTemplate(templateVinyls, "content")
+        initAllVinyls()
+        },
+      "/event/create": () => {
+        renderTemplate(templateCreateEvent, "content")
+        initCreateEvent()
+      },
+      "/event/update": (match) => {
+        renderTemplate(templateUpdateEvent, "content")
+        initUpdateEvent(1, match)
+      },
     })
     .notFound(() => {
     })

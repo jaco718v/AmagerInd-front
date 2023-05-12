@@ -1,0 +1,85 @@
+<template>  
+    <div style="margin-left:10%;margin-right: 10%; padding-bottom: 0%;">
+       <div style="max-width:900px;">
+          <div class="row">
+            <div class="col-md-4">
+              <h3 style="width: 450px;">Opret Nyhed</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="news-headline"><b>Overskrift</b></label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" placeholder="Overskrift" id="news-headline" required>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="news-textField"><b>Indhold</b></label>
+            </div>
+            <div class="col-md-8">
+             <br>
+              <textarea id="news-textField" cols="65" rows="6"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+            <label for="news-image"><b>Billede</b></label>
+          </div>
+          <div class="col-md-8">
+            <input type="file" id="news-image">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+            <label for="news-event"><b>Begivenhed</b></label>
+          </div>
+          <div class="col-md-1">
+            <input id="news-event" type="text" disabled>
+          </div>
+          <div class="col-md-2">
+            <button id="btn-open-modal" type="button" class="btn  btn-primary" data-bs-toggle="modal" data-bs-target="#news-event-modal" style="position: relative; top: 15px;"> Vælg</button>
+          </div>
+          </div>
+          <div class="row" style="margin-top:2em">
+            <div class="col-md-3 d-flex align-items-center">
+              <button id="btn-create-news" style="width:100%" class="btn btn-dark">Opret</button>
+            </div>
+          </div>
+        </div>
+     <p id="error-text" style="color:red"></p>
+    </div>
+    </div>
+
+    <div class="modal fade" id="news-event-modal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="newsModalLabel">Vælg begivenhed</h4>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="news-content" class="modal-content">
+                <div style="margin-left:10%;margin-right: 10%;">
+                    <div style="max-width:900px;">     
+                        <table class="table" style="max-width:1000px;">
+                            <thead>
+                              <tr class="bg-secondary" id="theader">
+                                <th>Id</th>
+                                <th>Overskrift</th>
+                                <th>Oprettelsesdato</th>
+                                <th>Vælg</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            </tbody>
+                          </table
+                    </div>
+                </div>
+            </div>
+            <p id="message-modal" style="color:red"></p>
+        </div>
+        </div>
+    </div>
+</template>

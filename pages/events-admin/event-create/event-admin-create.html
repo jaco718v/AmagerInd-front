@@ -1,0 +1,50 @@
+<template>  
+    <div style="margin-left:10%;margin-right: 10%; padding-bottom: 0%;">
+       <div style="max-width:900px;">
+          <div class="row">
+            <div class="col-md-4">
+              <h3 style="width: 450px;">Opret begivenhed</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="event-title"><b>Titel</b></label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" placeholder="Begivenhed titel" id="event-title" required>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="event-description"><b>Indhold</b></label>
+            </div>
+            <div class="col-md-8">
+             <br>
+              <textarea id="event-description" cols="65" rows="6"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+            <label for="event-image"><b>Billede</b></label>
+          </div>
+          <div class="col-md-8">
+            <input type="file" id="event-image">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+                <label for="event-date"><b>Tid</b></label>
+            </div>
+              <div class="col-md-8">
+                <input type="datetime-local" placeholder="Vælg dato" id="event-date" required>
+              </div>
+          </div>
+          <div class="row" style="margin-top:2em">
+            <div class="col-md-3 d-flex align-items-center">
+              <button id="btn-create-event" style="width:100%" class="btn btn-dark">Opret</button>
+            </div>
+          </div>
+        </div>
+     <p id="error-text" style="color:red"></p>
+    </div>
+    </div>
+</template>

@@ -1,0 +1,182 @@
+<template>
+  <img src="https://thumbs2.imgbox.com/f8/9d/vNbvlV1a_t.png" alt="image host"/>
+  <table class="table-light">
+    <thead>
+    <tr>
+    <th>Billede</th>
+    <th>Artist</th>
+    <th>Title</th>
+    <th>År</th>
+    <th>Land</th>
+    <th>Genre</th>
+    <th>Label</th>
+    <th>Pris</th>
+    </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table> <br>
+
+  <button id="btn-add-vinyl" type="button" class="btn btn-primary">Tilføj vinyl</button>
+
+  <div>
+    <p id="error" style="color:red"></p>
+  </div>
+  <div>
+    <p id="succes" style="color:greenyellow"></p>
+  </div>
+
+  <div id="add-vinyl" style="display: none">
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-artist">Kunstner</label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-artist"></input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-title">Titel</label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-title">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-image">Billede</label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-year">År</label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-year">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-country">Land</label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-country">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-genre">
+            Genre
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-genre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-label">
+            Label
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-label">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="add-price">
+            Pris
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="add-price">
+        </div>
+      </div><br>
+      <button id="btn-add-new-vinyl" type="button" class="btn btn-primary">Tilføj vinyl</button>
+  </div>
+
+
+  <div id="update-vinyl" style="display: none">
+    <div class="row">
+      <div class="col-md-10">
+        <input id="ID" style="font-weight: bolder" disabled></input>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+          <label for="artist">Kunstner</label>
+        </div>
+        <div class="col-md-10">
+          <input id="artist"></input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="title">Titel</label>
+        </div>
+        <div class="col-md-10">
+          <input id="title">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="image">Billede</label>
+        </div>
+        <div class="col-md-10">
+          <input id="image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="year">År</label>
+        </div>
+        <div class="col-md-10">
+          <input id="year">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="country">Land</label>
+        </div>
+        <div class="col-md-10">
+          <input id="country">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="genre">
+            Genre
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="genre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="label">
+            Label
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="label">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <label for="price">
+            Pris
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input id="price">
+        </div>
+      </div><br>
+    <button id="btn-edit-vinyl" type="button" class="btn btn-primary">Opdatér vinyl</button>
+  </div>
+
+</template>

@@ -20,10 +20,14 @@ async function createNews(){
     const headline = document.getElementById("news-headline").value
     const textField = document.getElementById("news-textField").value
     const eventId = document.getElementById("news-event").value
+    const priority1 = document.getElementById("news-priority").value
+    
     
     formData.append('headline', JSON.stringify(headline))
     formData.append('textField', JSON.stringify(textField))
     formData.append('event', JSON.stringify(eventId))
+    formData.append('priority', JSON.stringify(priority1))
+    
     
     try{
         const token = localStorage.getItem("token")

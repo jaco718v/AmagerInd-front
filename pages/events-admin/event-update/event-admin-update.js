@@ -12,7 +12,7 @@ let URL = API_URL + "/events/"
 export async function initUpdateEvent(pg, match){
     getEvents(pg, match)
     document.getElementById("theader").onclick = evt => handleSort(pg, match, evt)
-    document.getElementById("tbody").onclick = evt => choiceButton(evt)
+    document.getElementById("tbody").onclick = evt => choiceButton(evt, pg, match)
     document.getElementById("btn-create-event").onclick = evt => updateEvent(pg, match)
 
 }
@@ -30,7 +30,7 @@ async function handleSort(pageNo, match, evt) {
 
 async function getEvents(pg, match){
     const TOTAL = await getEventsTotal()
-
+    
     const p = match?.params?.page || pg 
     let pageNo = Number(p)
     let queryString =  `?sort=${sortField},${sortOrder}&size=${SIZE}&page=` + (pageNo-1)
@@ -179,14 +179,14 @@ function choiceButton(evt, pg, match){
     }
 }
 
-async function deleteEvent(id,pg, match){
+async function deleteEvent(id, pg, match){
         const token = localStorage.getItem("token")
         try{
             const response = await fetch(URL+id,{
                 method:'DELETE',
                 headers: {
                     //'Authorization': 'Bearer ' + token
-                }}).then(handleHttpErrors)
+                }})
             
             getEvents(pg, match)
             

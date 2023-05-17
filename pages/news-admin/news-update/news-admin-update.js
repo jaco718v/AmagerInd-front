@@ -13,7 +13,7 @@ const navigoRoute = "news/update"
 export async function initUpdateNews(pg,match) {
   getNews(pg, match)
   document.getElementById("theader").onclick = evt => handleSort(pg, match, evt)
-  document.getElementById("tbody").onclick = evt => choiceButton(evt)
+  document.getElementById("tbody").onclick = evt => choiceButton(evt, pg, match)
   document.getElementById("btn-create-news").onclick = evt => updateNews(pg, match)
 
 }
@@ -210,7 +210,7 @@ async function deleteNews(id,pg, match){
               method:'DELETE',
               headers: {
                  // 'Authorization': 'Bearer ' + token
-              }}).then(handleHttpErrors)
+              }})
           
           getNews(pg, match)
           

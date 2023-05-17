@@ -6,14 +6,31 @@
               <h3 style="width: 450px;">Opret Nyhed</h3>
             </div>
           </div>
+
+
           <div class="row">
             <div class="col-md-2">
               <label for="news-headline"><b>Overskrift</b></label>
             </div>
+
+
             <div class="col-md-8">
               <input type="text" placeholder="Overskrift" id="news-headline" required>
               </div>
           </div>
+
+
+          <div class="row">
+            <div class="col-md-2">
+              <label for="news-priority"><b>Prioritet</b></label>
+            </div>
+
+            <div class="col-md-8">
+              <input type="number" placeholder="0" id="news-priority" required>
+            </div>
+
+          </div>
+
           <div class="row">
             <div class="col-md-2">
               <label for="news-textField"><b>Indhold</b></label>
@@ -70,6 +87,7 @@
                                 <th>Overskrift</th>
                                 <th>Oprettelsesdato</th>
                                 <th>Vælg</th>
+                                <th>Prioritet</th>
                               </tr>
                             </thead>
                             <tbody id="tbody">

@@ -28,7 +28,9 @@ async function createNews(){
 
     const headline = document.getElementById("news-headline").value
     const textField = document.getElementById("news-textField").value
-    
+    const eventId = document.getElementById("news-event").value
+    const priority = document.getElementById("news-priority").value
+
     
     try{
         const response = await fetch(URL,{
@@ -37,7 +39,7 @@ async function createNews(){
                 'Content-Type': 'application/json',
                 //'Authorization': 'Bearer ' + token
                 }, 
-            body: JSON.stringify({encodedImage,headline,textField})
+            body: JSON.stringify({encodedImage,headline,textField,eventId,priority})
         })
             .then(handleHttpErrors)
         

@@ -1,4 +1,4 @@
-import { handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
+import { convertBase64, handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
 import { API_URL} from "../../../settings.js"
 
 let URL = API_URL + "/events/"
@@ -8,29 +8,34 @@ export async function initCreateEvent(){
 }
 
 async function createEvent(){
-    const formData = new FormData()
+    const token = localStorage.getItem("token")
 
-    const fileInput = document.getElementById("event-image");
+    const fileInput = document.getElementById("event-image").files[0];
+  
+    let encodedImage = null
 
-    formData.append('image',fileInput.files[0])
+    if(fileInput != null){
+    encodedImage = await convertBase64(fileInput)
+    encodedImage = encodedImage.replace("data:", "")
+    .replace(/^.+,/, "")
+    }
 
-    
+
+
     const title = document.getElementById("event-title").value
     const description = document.getElementById("event-description").value
     const dateTime = document.getElementById("event-date").value.replace("T", " ")
     
-    formData.append('title', JSON.stringify(title))
-    formData.append('description', JSON.stringify(description))
-    formData.append('dateTime', (JSON.stringify(dateTime)))
+
     
     try{
-        const token = localStorage.getItem("token")
         const response = await fetch(URL,{
             method:'POST',
             headers: { 
+                'Content-Type': 'application/json'
                 //'Authorization': 'Bearer ' + token
                 }, 
-            body: formData
+            body: JSON.stringify({title,description,dateTime, encodedImage})
         })
             .then(handleHttpErrors)
         

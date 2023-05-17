@@ -1,4 +1,4 @@
-import { handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
+import { convertBase64, handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
 import { API_URL} from "../../../settings.js"
 
 let URL = API_URL + "/news/"
@@ -9,34 +9,37 @@ export async function initCreateNews(){
     document.getElementById("btn-open-modal").onclick = evt => getEventsForModal()
 }
 
+
+
 async function createNews(){
-    const formData = new FormData()
-
-    const fileInput = document.getElementById("news-image");
-
-    formData.append('image',fileInput.files[0])
-
+    const token = localStorage.getItem("token")
+  
+    const fileInput = document.getElementById("news-image").files[0];
     
+    let encodedImage = null
+
+    if(fileInput != null){
+    encodedImage = await convertBase64(fileInput)
+    encodedImage = encodedImage.replace("data:", "")
+    .replace(/^.+,/, "")
+    }
+  
+    
+
     const headline = document.getElementById("news-headline").value
     const textField = document.getElementById("news-textField").value
     const eventId = document.getElementById("news-event").value
-    const priority1 = document.getElementById("news-priority").value
-    
-    
-    formData.append('headline', JSON.stringify(headline))
-    formData.append('textField', JSON.stringify(textField))
-    formData.append('event', JSON.stringify(eventId))
-    formData.append('priority', JSON.stringify(priority1))
-    
+    const priority = document.getElementById("news-priority").value
+
     
     try{
-        const token = localStorage.getItem("token")
         const response = await fetch(URL,{
             method:'POST',
             headers: { 
+                'Content-Type': 'application/json',
                 //'Authorization': 'Bearer ' + token
                 }, 
-            body: formData
+            body: JSON.stringify({encodedImage,headline,textField,eventId,priority})
         })
             .then(handleHttpErrors)
         

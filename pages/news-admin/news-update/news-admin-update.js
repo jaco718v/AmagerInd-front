@@ -1,4 +1,4 @@
-import { handleHttpErrors,sanitizeStringWithTableRows} from "../../../utils.js"
+import { convertBase64, handleHttpErrors,sanitizeStringWithTableRows} from "../../../utils.js"
 import { API_URL} from "../../../settings.js"
 import { paginator } from "../../../lib/paginator/paginate-bootstrap.js"
 
@@ -149,30 +149,32 @@ async function modalSetup(id){
 async function updateNews(pg, match){
   const token = localStorage.getItem("token")
   const id = document.getElementById("news-id").value
+  
+  const fileInput = document.getElementById("news-image").files[0];
+  
+  let encodedImage = null
 
-  const formData = new FormData()
-
-  const fileInput = document.getElementById("news-image");
-
-  formData.append('image',fileInput.files[0])
+  if(fileInput != null){
+  encodedImage = await convertBase64(fileInput)
+  encodedImage = encodedImage.replace("data:", "")
+  .replace(/^.+,/, "")
+  }
 
   
+
   const headline = document.getElementById("news-headline").value
   const textField = document.getElementById("news-textField").value
-
-
-  formData.append('headline', JSON.stringify(headline))
-  formData.append('textField', JSON.stringify(textField))
   
 
   try{
   const response = await fetch(URL + id,{
       method:'PUT',
       headers: { 
+        'Content-Type': 'application/json'
           //'Authorization': 'Bearer ' + token
           },
           
-      body:formData})
+      body:JSON.stringify({encodedImage,headline,textField})})
       .then(handleHttpErrors)
   
       getNews(pg, match)

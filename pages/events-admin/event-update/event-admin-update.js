@@ -146,8 +146,8 @@ async function updateEvent(pg, match){
     const response = await fetch(URL + id,{
         method:'PUT',
         headers: { 
-            'Content-Type': 'application/json'
-            //'Authorization': 'Bearer ' + token
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
             },
             
         body:JSON.stringify({title,description,dateTime,encodedImage})})
@@ -185,7 +185,7 @@ async function deleteEvent(id, pg, match){
             const response = await fetch(URL+id,{
                 method:'DELETE',
                 headers: {
-                    //'Authorization': 'Bearer ' + token
+                    'Authorization': 'Bearer ' + token
                 }})
             
             getEvents(pg, match)

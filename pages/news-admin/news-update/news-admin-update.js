@@ -169,8 +169,8 @@ async function updateNews(pg, match){
   const response = await fetch(URL + id,{
       method:'PUT',
       headers: { 
-        'Content-Type': 'application/json'
-          //'Authorization': 'Bearer ' + token
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
           },
           
       body:JSON.stringify({encodedImage,headline,textField})})
@@ -208,7 +208,7 @@ async function deleteNews(id,pg, match){
           const response = await fetch(URL+id,{
               method:'DELETE',
               headers: {
-                 // 'Authorization': 'Bearer ' + token
+                 'Authorization': 'Bearer ' + token
               }})
           
           getNews(pg, match)

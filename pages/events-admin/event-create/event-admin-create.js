@@ -32,8 +32,8 @@ async function createEvent(){
         const response = await fetch(URL,{
             method:'POST',
             headers: { 
-                'Content-Type': 'application/json'
-                //'Authorization': 'Bearer ' + token
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
                 }, 
             body: JSON.stringify({title,description,dateTime, encodedImage})
         })

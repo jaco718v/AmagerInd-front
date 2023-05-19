@@ -11,6 +11,8 @@ export function logout(){
   document.getElementById("login-id").style.display="block"
   document.getElementById("logout-id").style.display="none"
   localStorage.clear()
+  document.getElementById("news-edit").style.display = "none"
+  document.getElementById("event-edit").style.display = "none"
 
 }
 
@@ -37,6 +39,8 @@ async function login(evt) {
 
     document.getElementById("login-id").style.display="none"
     document.getElementById("logout-id").style.display="block"
+    document.getElementById("news-edit").style.display = "block"
+    document.getElementById("event-edit").style.display = "block"
 
     window.router.navigate("")
   } catch (err) {

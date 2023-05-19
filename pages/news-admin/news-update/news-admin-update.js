@@ -2,13 +2,12 @@ import { convertBase64, handleHttpErrors,sanitizeStringWithTableRows} from "../.
 import { API_URL} from "../../../settings.js"
 import { paginator } from "../../../lib/paginator/paginate-bootstrap.js"
 
-let URL = API_URL + "/news/"
-
-//let newsItems
 const SIZE = 5
 let sortOrder = "desc"
 let sortField = "id"
 const navigoRoute = "news/update"
+
+let URL = API_URL + "/news/"
 
 export async function initUpdateNews(pg,match) {
   getNews(pg, match)
@@ -170,8 +169,8 @@ async function updateNews(pg, match){
   const response = await fetch(URL + id,{
       method:'PUT',
       headers: { 
-        'Content-Type': 'application/json'
-          //'Authorization': 'Bearer ' + token
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
           },
           
       body:JSON.stringify({encodedImage,headline,textField})})
@@ -209,7 +208,7 @@ async function deleteNews(id,pg, match){
           const response = await fetch(URL+id,{
               method:'DELETE',
               headers: {
-                 // 'Authorization': 'Bearer ' + token
+                 'Authorization': 'Bearer ' + token
               }})
           
           getNews(pg, match)

@@ -43,14 +43,12 @@ window.addEventListener("load", async () => {
       }
     })
     .on({
-      //For very simple "templates", you can just insert your HTML directly like below
-      "/": () => document.getElementById("content").innerHTML = `
-        <h2>Home</h2>
-        <p style='margin-top:1em;font-size: 1.5em;color:darkgray;'>
-          Temp message <span style='font-size:2em;'>&#128516;</span>
-        </p>
-     `,
+      
       "/login": () => {
+        renderTemplate(templateLogin, "content")
+        initLogin()
+      },
+      "/": () => {
         renderTemplate(templateLogin, "content")
         initLogin()
       },

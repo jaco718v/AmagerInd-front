@@ -34,8 +34,8 @@ window.addEventListener("load", async () => {
   if(localStorage.getItem("token") == null){
     document.getElementById("news-edit").style.display = "none"
     document.getElementById("event-edit").style.display = "none"
-    document.getElementById("login-id").style.display="none"
-    document.getElementById("logout-id").style.display="block"
+    document.getElementById("login-id").style.display="block"
+    document.getElementById("logout-id").style.display="none"
   }
 
   const router = new Navigo("/", { hash: true });

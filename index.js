@@ -31,6 +31,11 @@ window.addEventListener("load", async () => {
 
   adjustForMissingHash()
 
+  if(localStorage.getItem("token") == null){
+    document.getElementById("news-edit").style.display = "none"
+    document.getElementById("event-edit").style.display = "none"
+  }
+
   const router = new Navigo("/", { hash: true });
   //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
   window.router = router

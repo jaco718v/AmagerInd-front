@@ -1,11 +1,11 @@
 import { convertBase64, handleHttpErrors,sanitizeStringWithTableRows } from "../../../utils.js"
 import { API_URL} from "../../../settings.js"
 import { paginator } from "../../../lib/paginator/paginate-bootstrap.js"
+
 const SIZE = 5
 let sortOrder = "desc"
 let sortField = "id"
 const navigoRoute = "event/update"
-
 
 let URL = API_URL + "/events/"
 

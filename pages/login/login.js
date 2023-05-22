@@ -1,7 +1,7 @@
 import { API_URL } from "../../settings.js"
 import {handleHttpErrors} from "../../utils.js"
 
-const URL = API_URL + "/auth/login"
+const URL = API_URL + "auth/login"
 
 export function initLogin() {
   document.getElementById("login-btn").onclick = login
